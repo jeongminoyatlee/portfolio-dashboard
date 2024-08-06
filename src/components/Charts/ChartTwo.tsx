@@ -1,8 +1,9 @@
 "use client";
 
 import { ApexOptions } from "apexcharts";
-import React from "react";
+import React, { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
+import { initialOrderData } from "../../data/orders";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -14,7 +15,7 @@ const options: ApexOptions = {
     fontFamily: "Satoshi, sans-serif",
     type: "bar",
     height: 335,
-    stacked: true,
+    stacked: false,
     toolbar: {
       show: false,
     },
@@ -50,8 +51,29 @@ const options: ApexOptions = {
   },
 
   xaxis: {
-    categories: ["M", "T", "W", "T", "F", "S", "S"],
+    categories: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   },
+  yaxis: [
+    {
+      title: {
+        text: "Sales",
+      },
+      min: 0,
+      labels: {
+        formatter: (val) => val.toFixed(0),
+      },
+    },
+    {
+      opposite: true,
+      title: {
+        text: "Revenue",
+      },
+      min: 0,
+      labels: {
+        formatter: (val) => `$${val.toFixed(0)}`,
+      },
+    },
+  ],
   legend: {
     position: "top",
     horizontalAlign: "left",
@@ -68,22 +90,53 @@ const options: ApexOptions = {
   },
 };
 
-interface ChartTwoState {
-  series: {
-    name: string;
-    data: number[];
-  }[];
-}
+const filterOrdersByWeek = (orders, startDate) => {
+  const start = new Date(startDate);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 7);
+
+  return orders.filter(order => {
+    const orderDate = new Date(order.date);
+    return orderDate >= start && orderDate < end;
+  });
+};
 
 const ChartTwo: React.FC = () => {
+  const [week, setWeek] = useState("This Week");
+
+  const filteredOrders = useMemo(() => {
+    const startDate = week === "This Week" ? new Date() : new Date(new Date().setDate(new Date().getDate() - 7));
+    startDate.setDate(startDate.getDate() - startDate.getDay());
+    return filterOrdersByWeek(initialOrderData, startDate);
+  }, [week]);
+
+  const dataByDay = useMemo(() => {
+    const dayData = {
+      Sunday: { sales: 0, revenue: 0 },
+      Monday: { sales: 0, revenue: 0 },
+      Tuesday: { sales: 0, revenue: 0 },
+      Wednesday: { sales: 0, revenue: 0 },
+      Thursday: { sales: 0, revenue: 0 },
+      Friday: { sales: 0, revenue: 0 },
+      Saturday: { sales: 0, revenue: 0 },
+    };
+    filteredOrders.forEach(order => {
+      dayData[order.day].sales += order.quantity;
+      dayData[order.day].revenue += order.totalPrice;
+    });
+    return dayData;
+  }, [filteredOrders]);
+
   const series = [
     {
       name: "Sales",
-      data: [44, 55, 41, 67, 22, 43, 65],
+      type: "bar",
+      data: Object.values(dataByDay).map(day => day.sales),
     },
     {
       name: "Revenue",
-      data: [13, 23, 20, 8, 13, 27, 15],
+      type: "bar",
+      data: Object.values(dataByDay).map(day => day.revenue),
     },
   ];
 
@@ -92,20 +145,22 @@ const ChartTwo: React.FC = () => {
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Profit this week
+            {week === "This Week" ? "Profit This Week" : "Profit Last Week"}
           </h4>
         </div>
         <div>
           <div className="relative z-20 inline-block">
             <select
-              name="#"
-              id="#"
+              name="week"
+              id="week"
+              value={week}
+              onChange={(e) => setWeek(e.target.value)}
               className="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
             >
-              <option value="" className="dark:bg-boxdark">
+              <option value="This Week" className="dark:bg-boxdark">
                 This Week
               </option>
-              <option value="" className="dark:bg-boxdark">
+              <option value="Last Week" className="dark:bg-boxdark">
                 Last Week
               </option>
             </select>

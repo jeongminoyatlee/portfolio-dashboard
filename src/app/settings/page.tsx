@@ -4,9 +4,7 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-  title: "Next.js Settings | TailAdmin - Next.js Dashboard Template",
-  description:
-    "This is Next.js Settings page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
+  title: "RetailRadar",
 };
 
 const Settings = () => {
@@ -64,8 +62,8 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="John Doe"
+                          defaultValue="John Doe"
                         />
                       </div>
                     </div>
@@ -82,8 +80,8 @@ const Settings = () => {
                         type="text"
                         name="phoneNumber"
                         id="phoneNumber"
-                        placeholder="+990 3343 7865"
-                        defaultValue="+990 3343 7865"
+                        placeholder="+123 1234 1234"
+                        defaultValue="+123 1234 1234"
                       />
                     </div>
                   </div>
@@ -126,8 +124,8 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="johndoe213@gmail.com"
+                        defaultValue="johndoe213@gmail.com"
                       />
                     </div>
                   </div>
@@ -144,8 +142,8 @@ const Settings = () => {
                       type="text"
                       name="Username"
                       id="Username"
-                      placeholder="devidjhon24"
-                      defaultValue="devidjhon24"
+                      placeholder="johndoe"
+                      defaultValue="johndoe"
                     />
                   </div>
 
@@ -194,7 +192,7 @@ const Settings = () => {
                         id="bio"
                         rows={6}
                         placeholder="Write your bio here"
-                        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet."
+                        defaultValue="john doe is here"
                       ></textarea>
                     </div>
                   </div>
@@ -229,7 +227,7 @@ const Settings = () => {
                   <div className="mb-4 flex items-center gap-3">
                     <div className="h-14 w-14 rounded-full">
                       <Image
-                        src={"/images/user/user-03.png"}
+                        src={"/images/user/user-06.png"}
                         width={55}
                         height={55}
                         alt="User"

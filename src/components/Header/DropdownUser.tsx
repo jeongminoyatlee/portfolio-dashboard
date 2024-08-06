@@ -15,16 +15,16 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            John Doe
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">Sales Manager</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
           <Image
             width={112}
             height={112}
-            src={"/images/user/user-01.png"}
+            src={"/images/user/user-06.png"}
             style={{
               width: "auto",
               height: "auto",
@@ -81,7 +81,7 @@ const DropdownUser = () => {
                 My Profile
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="#"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
@@ -101,7 +101,7 @@ const DropdownUser = () => {
                 </svg>
                 My Contacts
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/settings"
