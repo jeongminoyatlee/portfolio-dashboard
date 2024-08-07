@@ -1,4 +1,4 @@
-"use client"; // 클라이언트 컴포넌트로 명시
+"use client"; 
 import { useState } from "react";
 import { Product, initialProductData, categories, colors } from "../../data/products";
 import Link from "next/link";
@@ -101,7 +101,6 @@ const TableProducts: React.FC = () => {
     setEditingIndex(productData.length + additionalRows.length);
     setEditFields(newRow);
 
-    // Calculate the total pages and set to the last page
     const totalPages = Math.ceil((productData.length + additionalRows.length + 1) / itemsPerPage);
     setCurrentPage(totalPages);
   };
@@ -179,22 +178,22 @@ const TableProducts: React.FC = () => {
               <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" checked={selectAll} onChange={handleSelectAllChange} />
               <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
             </div>
-            <div className="py-4 xl:p-3 cursor-pointer" onClick={() => requestSort("name")}>
+            <div className="mt-1 py-4 xl:p-3 cursor-pointer" onClick={() => requestSort("name")}>
               <h5 className="text-sm font-medium uppercase xsm:text-base">
                 Product Name {sortConfig?.key === "name" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
               </h5>
             </div>
-            <div className="py-4 text-center xl:p-3 cursor-pointer" onClick={() => requestSort("color")}>
+            <div className="mt-1 py-4 text-center xl:p-3 cursor-pointer" onClick={() => requestSort("color")}>
               <h5 className="text-sm font-medium uppercase xsm:text-base">
                 Color {sortConfig?.key === "color" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
               </h5>
             </div>
-            <div className="py-4 text-center xl:p-3 cursor-pointer" onClick={() => requestSort("category")}>
+            <div className="mt-1 py-4 text-center xl:p-3 cursor-pointer" onClick={() => requestSort("category")}>
               <h5 className="text-sm font-medium uppercase xsm:text-base">
                 Category {sortConfig?.key === "category" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
               </h5>
             </div>
-            <div className="py-4 text-center xl:p-3">
+            <div className="mt-1 py-4 text-center xl:p-3">
               <h5 className="text-sm font-medium uppercase xsm:text-base">
                 Action
               </h5>

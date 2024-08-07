@@ -1,5 +1,5 @@
 //src/components/Users/TableUsers.tsx
-"use client"; // 클라이언트 컴포넌트로 명시
+"use client"; 
 import { useState } from "react";
 import { User, initialUserData, roles, statuses } from "../../data/users";
 

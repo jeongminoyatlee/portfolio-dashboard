@@ -6,7 +6,6 @@ export const metadata: Metadata = {
   title: "Next.js Alerts | RetailRadar - Next.js Dashboard Template",
   description:
     "This is Next.js Alerts page for RetailRadar - Next.js Tailwind CSS Admin Dashboard Template",
-  // other metadata
 };
 
 const Alerts = () => {

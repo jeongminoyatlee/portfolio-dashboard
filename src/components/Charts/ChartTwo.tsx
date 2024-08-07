@@ -3,7 +3,7 @@
 import { ApexOptions } from "apexcharts";
 import React, { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
-import { initialOrderData } from "../../data/orders";
+import { initialOrderData, Order } from "../../data/orders";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -90,7 +90,14 @@ const options: ApexOptions = {
   },
 };
 
-const filterOrdersByWeek = (orders, startDate) => {
+interface DayData {
+  [key: string]: {
+    sales: number;
+    revenue: number;
+  };
+}
+
+const filterOrdersByWeek = (orders: Order[], startDate: Date) => {
   const start = new Date(startDate);
   const end = new Date(start);
   end.setDate(end.getDate() + 7);
@@ -111,7 +118,7 @@ const ChartTwo: React.FC = () => {
   }, [week]);
 
   const dataByDay = useMemo(() => {
-    const dayData = {
+    const dayData: DayData = {
       Sunday: { sales: 0, revenue: 0 },
       Monday: { sales: 0, revenue: 0 },
       Tuesday: { sales: 0, revenue: 0 },
@@ -121,8 +128,9 @@ const ChartTwo: React.FC = () => {
       Saturday: { sales: 0, revenue: 0 },
     };
     filteredOrders.forEach(order => {
-      dayData[order.day].sales += order.quantity;
-      dayData[order.day].revenue += order.totalPrice;
+      const day = order.day as keyof DayData; 
+      dayData[day].sales += order.quantity;
+      dayData[day].revenue += order.totalPrice;
     });
     return dayData;
   }, [filteredOrders]);

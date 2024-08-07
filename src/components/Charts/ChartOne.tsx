@@ -143,20 +143,20 @@ const ChartOne: React.FC = () => {
           </h4>
         </div>
         <div className="flex flex-wrap items-center justify-end gap-3">
-          <div className="flex min-w-47.5">
+          <div className="flex min-w-30">
             <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">Total Site Visits</p>
+              <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Site Visits</p>
             </div>
           </div>
-          <div className="flex min-w-47.5">
+          <div className="flex min-w-30">
             <span className="mr-2 mt-1 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-secondary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-secondary">Total Users</p>
+              <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Users</p>
             </div>
           </div>
         </div>

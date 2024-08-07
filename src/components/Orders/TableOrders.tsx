@@ -1,4 +1,4 @@
-"use client"; // 클라이언트 컴포넌트로 명시
+"use client"; 
 import { useState } from "react";
 import { Order, initialOrderData, statuses } from "../../data/orders";
 
@@ -34,31 +34,11 @@ const TableOrders: React.FC = () => {
     setSortConfig({ key, direction });
   };
 
-  const startEditing = (index: number) => {
-    setEditingIndex(index);
-    setEditFields(orderData[index]);
-  };
-
   const handleEditChange = (field: keyof Order, value: string | number) => {
     setEditFields((prev) => ({
       ...prev,
       [field]: value,
     }));
-  };
-
-  const saveEdit = () => {
-    if (editingIndex !== null) {
-      const updatedData = [...orderData];
-      updatedData[editingIndex] = { ...updatedData[editingIndex], ...editFields };
-      setOrderData(updatedData);
-      setEditingIndex(null);
-      setEditFields({});
-    }
-  };
-
-  const cancelEdit = () => {
-    setEditingIndex(null);
-    setEditFields({});
   };
 
   const handlePageChange = (page: number) => {

@@ -1,5 +1,4 @@
 // src/data/products.ts
-
 export type Product = {
     name: string;
     category: string;
@@ -97,6 +96,5 @@ export type Product = {
   export const categories = ["Select", "Accessories", "Laptop", "Phone", "Tablet", "Camera", "Drone", "TV"];
   export const colors = ["Select", "Black", "White", "Silver", "Gray", "Blue", "Red"];
   
-  // Calculate the total number of products
   export const totalProducts = initialProductData.length;
   
