@@ -74,7 +74,7 @@ const ProfilePage = () => {
                     />
                   </svg>
                 </span>
-                <span>Edit Cover Image</span>
+                <span>Edit</span>
               </label>
             </div>
           </div>
