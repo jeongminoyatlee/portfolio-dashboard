@@ -1,3 +1,4 @@
+//src/app/components/Dashboard/E-commerce.tsx
 "use client";
 import React, { useMemo } from "react";
 import ChartOne from "../Charts/ChartOne";
